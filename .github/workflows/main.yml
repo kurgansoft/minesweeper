@@ -1,0 +1,47 @@
+name: Generate js file and deploy it to GH Pages
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: zulu
+          java-version: 19
+          cache: sbt
+      - name: Setup sbt
+        uses: sbt/setup-sbt@v1
+      - name: Transpiling Scala code into one optimized JS file
+        run: sbt fullOptJS
+      - name: Creating 'artifact' folder
+        run: mkdir artifact
+      - name: Moving the created JS file to the 'artifact' folder
+        run: mv target/scala-3.3.0/root-opt/main.js ./artifact
+      - name: Moving static assets to the 'artifact' folder
+        run: mv src/main/resources/* ./artifact
+      - name: Uploading the artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: artifact/
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{steps.deployment.outputs.page_url}}
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
