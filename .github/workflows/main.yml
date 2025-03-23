@@ -24,7 +24,7 @@ jobs:
       - name: Creating 'artifact' folder
         run: mkdir artifact
       - name: Moving the created JS file to the 'artifact' folder
-        run: mv target/scala-3.3.0/root-opt/main.js ./artifact
+        run: mv target/scala-3.3.5/root-opt/main.js ./artifact
       - name: Moving static assets to the 'artifact' folder
         run: mv src/main/resources/* ./artifact
       - name: Uploading the artifact
