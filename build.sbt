@@ -2,7 +2,7 @@ ThisBuild / version := "0.1.0-SNAPSHOT"
 
 ThisBuild / scalaVersion := "3.3.5"
 
-val zioVersion = "2.1.20"
+val zioVersion = "2.1.21"
 
 lazy val root = (project in file("."))
   .settings(
@@ -10,8 +10,8 @@ lazy val root = (project in file("."))
     libraryDependencies ++= Seq(
       "dev.zio" %% "zio" % zioVersion,
       "org.scala-js" %%% "scalajs-dom" % "2.8.1",
-      "com.github.japgolly.scalajs-react"  %%% "core" % "2.1.2",
-      "com.github.kurgansoft.uiglue" %%% "uiglue" % "061e95d468e916d06e0889715b90f1f2118a7826"
+      "com.github.japgolly.scalajs-react"  %%% "core" % "2.1.3",
+      "com.github.kurgansoft.uiglue" %%% "uiglue" % "846288b0b7840ce2f0741df9191f608e34ca85ca"
     ),
     resolvers += "jitpack" at "https://jitpack.io"
   ).enablePlugins(ScalaJSPlugin)
