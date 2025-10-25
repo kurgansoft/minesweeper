@@ -1,13 +1,13 @@
 package minesweeper
 
-import minesweeper.GameState._
+import minesweeper.GameState.*
 import uiglue.EventLoop.EventHandler
 import uiglue.UIState
-import zio.{UIO, ZIO}
+import zio.UIO
 
-case class State(grid: Option[MineSweeperGrid] = None, gameState: GameState = NOT_STARTED, noOfRemainingFieldsToExplore: Int = -1) extends UIState[Action] {
+case class State(grid: Option[MineSweeperGrid] = None, gameState: GameState = NOT_STARTED, noOfRemainingFieldsToExplore: Int = -1) extends UIState[Action, Any] {
 
-  override def processEvent(action: Action): (UIState[Action], EventHandler[Action] => UIO[List[Action]]) =
+  override def processEvent(action: Action): (UIState[Action, Any], EventHandler[Action] => UIO[List[Action]]) =
     action match
       case LeftClick(x, y) =>
         println(s"field clicked: ($x,$y)")
