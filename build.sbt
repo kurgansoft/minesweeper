@@ -8,7 +8,7 @@ lazy val root = (project in file("."))
     libraryDependencies ++= Seq(
       "org.scala-js" %%% "scalajs-dom" % "2.8.1",
       "com.github.japgolly.scalajs-react"  %%% "core" % "2.1.3",
-      "com.github.kurgansoft.uiglue" %%% "uiglue" % "f8f723fca11ab25e8661d53385a0a59dcc4123d7"
+      "com.github.kurgansoft.uiglue" %%% "uiglue" % "a76fff2f395195a77be2ac0a74dbe4f3a6e0a9cb"
     ),
     resolvers += "jitpack" at "https://jitpack.io"
   ).enablePlugins(ScalaJSPlugin)
